@@ -1,0 +1,581 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>SISTEMA RECOMENDADOR PARA PROFESIONALES DEL ÁREA DE LA ONCOLOGÍA | Jorge Tutor | UNED 2018</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style>
+			div.small,
+			p.small,
+			ul.small,
+			ol.small,
+			span.small,
+			table.small {
+				font-size: 0.8em;
+			}
+			div.xsmall,
+			ul.xsmall,
+			ol.xsmall,
+			p.xsmall,
+			span.xsmall,
+			table.xsmall {
+				font-size: 0.6em;
+			}
+
+			img.small {
+				max-width: 200px;
+			}
+			img.medium {
+				max-width: 360px;
+			}
+			img.circle {
+				border-radius: 50%;
+			}
+			.reveal section img {
+				border:none;
+				box-shadow: none;
+				max-height:600px;
+			}
+			.reveal section img.profile {
+				border: 10px solid #eee;
+			}
+
+			body {
+				background: url(assets/UNED-background.png) center center no-repeat;
+			}
+
+			.reveal h1,
+			.reveal h2,
+			.reveal h3 {
+				text-transform: none;
+				color: #004c00;
+			}
+
+			strong {
+				color: #004c00;
+			}
+
+			ol { counter-reset: item; }
+			ol li { display: block; }
+			ol li:before {
+			    content: counter(item) ". ";
+			    counter-increment: item;
+			    color: #006600;
+			}
+			.reveal li {
+				margin-bottom: 0.5em;
+			}
+
+			.floating {
+		    position: absolute;
+		    bottom: 0;
+		    left: 0;
+				padding: 1em;
+				font-family: "Source Sans Pro", Helvetica;
+				color: #666;
+			}
+
+			.reveal .linehigher {
+				line-height: 2em;
+			}
+
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="floating">
+			SISTEMA RECOMENDADOR PARA PROFESIONALES DEL ÁREA DE LA ONCOLOGÍA
+		</div>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+					<img src="assets/UNED-logo.png" alt="UNED logo"/>
+					<div class="small">UNIVERSIDAD NACIONAL DE EDUCACIÓN A DISTANCIA</div>
+					<div class="xsmall">ESCUELA TÉNICA SUPERIOR DE INGENIERÍA INFORMÁTICA</div>
+					<p class="xsmall">Proyecto de Fin de Grado en Ingeniería Informática</p>
+					<p><strong>SISTEMA RECOMENDADOR PARA PROFESIONALES DEL ÁREA DE LA ONCOLOGÍA</strong></p>
+					<div>Curso 2017-2018</div>
+				</section>
+
+				<section>
+					<p><strong>SISTEMA RECOMENDADOR PARA PROFESIONALES DEL ÁREA DE LA ONCOLOGÍA</strong></p>
+					<p class="xsmall">Dpto. Sistemas de Comunicación y Control</p>
+					<p class="small">Director: Rafael Pastor Vargas</p>
+					<p class="small">Codirector: Carlos Luis Sánchez Bocanegra</p>
+				</section>
+
+				<section>
+					<img class="small circle profile" src="assets/jorgetutor-2018-square.jpg" alt="Jorge Tutor Foto Perfil" />
+					<div>Jorge Tutor</div>
+					<p class="xsmall">Alumno Grado en Ingeniería Informática - UNED</p>
+					<div class="xsmall">jorgetutor.me / @jltutor</div>
+				</section>
+
+				<section>
+					<h2>Sobre el proyecto</h2>
+					<p class="xsmall linehigher">Apoyo al personal médico (<strong>oncólogos</strong>) añadiendo <strong>información contextual</strong> de calidad de diferentes ontologías, basándose en el <strong>historial médico del paciente</strong> a través de herramientas interconectadas de <strong>procesamiento de lenguaje natural</strong> (<em>cTakes</em>) con búsquedas activas en <strong>servicios</strong> como: <em>MedLinePlus, ClinicalTrials y PubMed</em>.</p>
+				</section>
+
+				<section>
+					<h2>Sobre el proyecto</h2>
+					<p class="xsmall">Basado en los estudios previos:</p>
+					<ul class="xsmall">
+						<li><strong>Juan Pedro Pereira Carrillo</strong> - Sistema de reconocimiento de terminología clínica en textos clínicos no estructurados.<br/> <em>Trabajo Fin de Grado Tecnologías Información UNED 2017</em>
+    				<li><strong>Karla Azucena Chacón Vargas</strong> - Desarrollo de una metodología piloto para vinculación a ClinicalTrials como herramienta de medicina basada en evidencias, para proporcionar medicina centrada en el paciente.<br/> <em>Máster Telemedicina UOC 2017</em>
+    				<li><strong>Nicolás Passadore</strong> - Recomendaciones de artículos a través de PUBMED.<br/> <em>Máster Telemedicina UOC 2017</em></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Presentación</h2>
+					<ol class="small">
+						<li>Introducción: <span class="small">Contextualización, Objetivos</span></li>
+						<li>Estado del arte: <span class="small">Análisis, Metodología, Componentes, Casos de uso</span></li>
+						<li>Desarrollo solución: <span class="small">Arquitectura, cTakes, Bioontology, PubMed, ClinicalTrials, MedlinePlus, Youtube, Drupal, Simulador, Avicenna</li>
+						<li>Pilotaje: demo</li>
+						<li>Conclusiones: <span class="small">Objetivos, Visión Personal, Carencias proyecto, Trabajo futuro</span></li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Introducción</h2>
+				</section>
+
+				<section>
+					<h3>Introducción: Contextualización</h3>
+					<p class="xsmall">En 2017 los nuevos casos estimados de cáncer en España han sido 228.482 y para 2035 se estima que habrá <strong>315.413</strong> <em>(Sociedad Española de Oncología Médica, 2018)⁠.</em></p>
+					<p class="xsmall">...cuando <strong>no se conoce tratamiento</strong> para el estado del paciente se aplican manejos <strong>paliativos</strong>...</p>
+					<p class="xsmall">...decisiones se basan información médica del centro y formación del Doctor (formación, investigaciones).  Gran parte basándose en información médica <strong>no actualizadas</strong>.</p>
+				</section>
+
+				<section>
+					<h3>Introducción: Objetivos</h3>
+					<div><strong>Primario</strong></div>
+					<div class="small">Recomendaciones de protocolos de investigación clínica, artículos científicos e información para capacitación  al paciente a través de distintos servicios de información (ontologías)</p>
+					<div class="xsmall"><strong>Secundarios</strong></div>
+					<div class="small">Relevante y Actualizada | Accessible | Interoperable | Usable | Multidioma</div>
+				</section>
+
+				<section>
+					<h2>Estado del Arte</h2>
+				</section>
+
+				<section>
+					<h3>Estado del Arte: Metodología</h3>
+					<ul class="small">
+						<li>Ágil</li>
+						<li>Sprints semanales</li>
+						<li>Equipo trabajo multidisciplinar y distribuido globalmente</li>
+						<li>Evolución requisitos</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Estado del Arte: Análisis</h3>
+					<p class="xsmall">Ficha médica paciente: Standard HL7, historial</p>
+					<table class="xsmall">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Tipo</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Identificador</td>
+								<td>Cadena</td>
+							</tr>
+							<tr>
+								<td>Edad</td>
+								<td>Entero</td>
+							</tr>
+							<tr>
+								<td>Diagnóstico principal</td>
+								<td>Cadena</td>
+							</tr>
+							<tr>
+								<td>Órgano afectado</td>
+								<td>Cadena</td>
+							</tr>
+							<tr>
+								<td>Historia clínica</td>
+								<td>Cadena</td>
+							</tr>
+							<tr>
+								<td>Género</td>
+								<td>Cadena</td>
+							</tr>
+							<tr>
+								<td>...</td>
+								<td>...</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section>
+					<h3>Estado del Arte: Análisis</h3>
+					<p class="xsmall">Procesado del Lenguaje Natural (NLP)</p>
+					<table class="xsmall">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Tipo</th>
+								<th>Extracción</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Identificador</td>
+								<td>Cadena</td>
+								<td>-</td>
+							</tr>
+							<tr>
+								<td>Edad</td>
+								<td>Entero</td>
+								<td>Valor</td>
+							</tr>
+							<tr>
+								<td>Diagnóstico principal</td>
+								<td>Cadena</td>
+								<td>NLP</td>
+							</tr>
+							<tr>
+								<td>Órgano afectado</td>
+								<td>Cadena</td>
+								<td>Valor</td>
+							</tr>
+							<tr>
+								<td>Historia clínica</td>
+								<td>Cadena</td>
+								<td>NLP</td>
+							</tr>
+							<tr>
+								<td>Género</td>
+								<td>Cadena</td>
+								<td>Valor</td>
+							</tr>
+							<tr>
+								<td>...</td>
+								<td>...</td>
+								<td>...</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section>
+					<h3>Estado del Arte: Análisis</h3>
+					<p class="xsmall">Fuentes de información Biomédicas</p>
+					<p class="xsmall">Artículos científicos | Casos clínicos | Terminología | CUI -> MESH (Bioontology)</p>
+					<img class="medium" src="assets/analysis.png" alt="Fuentes Biomédicas">
+				</section>
+
+				<section>
+					<h3>Estado del Arte: Componentes</h3>
+					<img src="assets/hope-componentes.png" alt="Componentes"/>
+				</section>
+
+				<section>
+					<h3>Estado del Arte: Casos de Uso</h3>
+					<img src="assets/use-cases.png" alt="Casos de uso"/>
+				</section>
+
+				<section>
+					<h2>Desarrollo de la solución</h2>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Arquitectura</h3>
+					<ul class="small">
+						<li>cTakes</li>
+						<li>PHP</li>
+						<li>Composer / Packagist: Librerías</li>
+						<li>Drupal8</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: cTakes</h3>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Bioontology</h3>
+					<p class="xsmall">Obtener términos MESH en base a los términos CUI que es capaz de identificar cTakes.</p>
+					<pre><code>{
+ "page": 1,
+ "pageCount": 1,
+ "totalCount": 1,
+ "prevPage": null,
+ "nextPage": null,
+ "links": {
+   "nextPage": null,
+   "prevPage": null
+ },
+ "collection": [
+   {
+     "prefLabel": "Melanoma",
+     "synonym": [
+       "Malignant Melanoma",
+       "Melanomas, Malignant",
+       "Melanoma, Malignant",
+       "Malignant Melanomas",
+       "Melanomas"
+ ],
+ "definition": [
+"A malignant neoplasm derived from cells that are capable of forming melanin, which may occur in the skin of any part of the body, in the eye, or, rarely, in the mucous membranes of the genitalia, anus, oral cavity, or other sites. It occurs mostly in adults and may originate de novo or from a pigmented nevus or malignant lentigo. Melanomas frequently metastasize widely, and the regional lymph nodes, liver, lungs, and brain are likely to be involved. The incidence of malignant skin melanomas is rising rapidly in all parts of the world. (Stedman, 25th ed; from Rook et al., Textbook of Dermatology, 4th ed, p2445)"
+ ],
+ "cui": [
+   "C0025202"
+ ],
+ "semanticType": [
+   "T191"
+ ],
+ ...
+}</code></pre>
+					<p class="xsmall">https://packagist.org/packages/tutor/bioontology</p>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: PubMed</h3>
+					<p class="xsmall">Obtener artículos relacionados a través de la combinación de términos MESH (Bioontology)</p>
+					<pre><code>"articles": [
+ {
+   "id": "29370496",
+   "title": "[BOWEL ENDOMETRIOSIS - CASE OF RECTAL LOCALISATION.]",
+   "abstract": {
+     "value": "Endometriosis is a relatively common disease which rarely involves the bowel, and even more rarely occurs with intestinal obstruction. Gastrointestinal tract is involved in 3 to 37% of women..."
+   },
+   "authors": {
+     "@attributes": {
+       "CompleteYN": "Y"
+     },
+     "Author": [
+       {
+         "@attributes": {
+           "ValidYN": "Y"
+         },
+         "LastName": "Tsankov",
+         "ForeName": "Ts",
+         "Initials": "T"
+       },
+       {...}
+       ]
+     },
+     "ids": [
+       {
+         "IdType": "pubmed"
+       },
+       "29370496"
+     ],
+    "articleDate": null,
+    "completedDate": {
+      "Year": "2018"
+      "Month": "05",
+      "Day": "01"
+    },
+    "revisedDate": {
+      "Year": "2018",
+      "Month": "05",
+      "Day": "01"
+     }
+   },
+   { … }
+ ]
+},</code></pre>
+					<p class="xsmall">https://packagist.org/packages/tutor/ncbi</p>
+
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: ClinicalTrials</h3>
+					<p class="xsmall">Integración con el repositorio de casos clínicos relacionados a través de la combinación de términos MESH (Bioontology).</p>
+					<pre><code>"clinicaltrials": {
+ "query": {
+   "brief_title_fulltext": "Breast"
+ },
+ "trials": [
+ {
+   "nci_id": "NCI-2015-01918",
+   "nct_id": "NCT02750826",
+   "brief_title": "Weight Loss Interventions in Treating Overweight and Obese Women with a Higher Risk for Breast Cancer Recurrence",
+   "official_title": "Randomized Phase III Trial Evaluating the Role of Weight Loss in Adjuvant Treatment of Overweight and Obese Women with Early Breast Cancer",
+   "brief_summary": "This randomized phase III trial studies weight loss interventions in treating overweight and obese women with a higher risk for breast cancer that comes back (recurrence). Many studies have shown that women who are overweight or obese when diagnosed with breast cancer appear to have a higher risk of cancer recurrence. This study aims to test whether overweight or obese women who take part in a weight loss program after being diagnosed with breast cancer have a lower rate of cancer recurrence as compared to women who do not take part in the program."
+ },
+ {
+   "nci_id": "NCI-2012-01995",
+   "nct_id": "NCT01674140",
+   "brief_title": "Hormone Therapy with or without Everolimus in Treating Patients with Breast Cancer",
+"official_title": "Phase III Randomized, Placebo-Controlled Clinical Trial Evaluating the Use of Adjuvant Endocrine Therapy + / - One Year of Everolimus in Patients with High-Risk Hormone Receptor-Positive and HER2 / Neu Negative Breast Cancer. e^3 Breast Cancer Study-Evaluating Everolimus with Endocrine Therapy",
+"brief_summary": "This randomized phase III trial studies how well hormone therapy when given together with or without everolimus work in treating patients with breast cancer. Estrogen can cause the growth of breast cancer cells. Hormone therapy using tamoxifen citrate, goserelin acetate, leuprolide acetate, anastrozole, letrozole, or exemestane, may fight breast cancer by lowering the amount of estrogen the body makes. Everolimus may stop the growth of tumor cells by blocking some of the enzymes needed for cell growth. It is not yet known whether hormone therapy is more effective when given with or without everolimus in treating breast cancer."
+},
+{...}]
+}</code></pre>
+					<p class="xsmall">https://packagist.org/packages/tutor/clinicaltrials</p>
+
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: MedlinePlus</h3>
+					<p class="xsmall">Obtener términos MESH en base a los términos CUI que es capaz de identificar cTakes.</p>
+					<pre><code>"medlineplus": {
+ "query": {
+   "term": "Breast",
+   "rettype": "all"
+ },
+"topics": [
+ {
+   "url": "https://medlineplus.gov/breastdiseases.html",
+   "title": "Breast Diseases",
+   "FullSummary": "Most women experience breast changes at some time. Your age, hormone levels, and medicines you take may cause lumps, bumps, and discharges (fluids that are not breast milk).If you have a breast lump, pain, discharge or skin irritation, see your health care provider. Minor and serious breast problems have similar  symptoms. Although many women fear cancer, most breast problems are not cancer.Some common breast changes areFibrocystic breast changes - lumpiness, thickening and swelling, often just before a woman's periodCysts - fluid-filled lumpsFibroadenomas - solid, round, rubbery lumps that move easily when pushed, occurring most in younger womenIntraductal papillomas - growths similar to warts near the nippleBlocked milk ductsMilk production when a woman is not breastfeedingNIH: National Cancer Institute "
+},
+{
+   "url": "https://medlineplus.gov/breastcancer.html",
+   "title": "Breast Cancer",
+   "FullSummary": "Breast cancer affects one in eight women during their lives. No one knows why some women get breast cancer, but there are many risk factors. Risks that you cannot change includeAge - the risk rises as you get olderGenes - two genes, BRCA1 and BRCA2, greatly increase the risk. Women who have family members with breast or ovarian cancer may wish to be tested for the genes.Personal factors - beginning periods before age 12 or going through menopause after age 55Other risks include obesity, using hormone replacement therapy (also called menopausal hormone therapy), taking birth control pills, drinking alcohol, not having children or having your first child after age 35, and having dense breasts.Symptoms of breast cancer may include a lump in the breast, a change in size or shape of the breast, and discharge from a nipple. Breast self-exams and mammography can help find breast cancer early, when it is most treatable. One possible treatment is surgery. It could be a lumpectomy or a mastectomy. Other treatments include radiation therapy, chemotherapy, hormone therapy, and targeted therapy. Targeted therapy uses substances that attack cancer cells without harming normal cells.Men can have breast cancer, too, but it is rare.NIH: National Cancer Institute"
+},</code></pre>
+					<p class="xsmall">https://packagist.org/packages/tutor/bioontology</p>
+
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Youtube</h3>
+					<p class="xsmall">Obtención de vídeos de canales de Youtube previamente seleccionados con el algoritmo Tesis de Luis Fernández Luque de HelthTrust.</p>
+
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Drupal</h3>
+					<ul>
+						<li>Framework</li>
+						<li>Integrado Composer</li>
+						<li>Versión 8</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Interacción</h3>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Simulador</h3>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Avicenna</h3>
+				</section>
+
+				<section>
+					<h2>Pilotaje</h2>
+				</section>
+
+				<section>
+					<h3>Pilotaje: demo</h3>
+					<p class="small">Clínica Conciencia en Neuquén, Argentina. Septiembre 2018</p>
+					<video width="320" height="240" controls>
+					  <source src="assets/conciencia-integration-demo.mp4" type="video/mp4">
+					  Tu navegador no es compatible con MP4
+					</video>
+				</section>
+
+				<section>
+					<h2>Conclusiones</h2>
+				</section>
+
+				<section>
+					<h3>Conclusiones: Objetivos</h3>
+					<ol class="small">
+						<li>Sistema de recomendaciones a través de distintos servicios de información</li>
+						<li>Información Relevante y Actualizada</li>
+						<li>Accessible</li>
+						<li>Interoperable</li>
+						<li>Usable</li>
+						<li>Multidioma</li>
+					</ol>
+				</section>
+
+				<section>
+					<h3>Conclusiones: Dificultades/carencias</h3>
+					<ul class="small">
+						<li>Coordinación equipo: multidisciplinar, distribuido globalmente</li>
+						<li>Relevancia resultados: cTakes & Algoritmos</li>
+						<li>(no) Automatización de instalación: ansible & backups</li>
+						<li>Consumo de tiempo: Ingestigación & Formación equipo</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Conclusiones: Visión Personal</h3>
+					<ul class="small">
+						<li>Experiencia equipo multidisciplinar, distribuido globalmente</li>
+						<li>Projecto real en funcionamiento</li>
+						<li>Consolidación equipo de trabajo post-graduado</li>
+						<li>Contribuciones software libre: librerias (Bioontology, PubMed, MedLinePlus, ClinicalTrials)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Conclusiones: Trabajo futuro</h3>
+					<ul class="small">
+						<li>Mejoras algoritmo búsqueda: API + IA
+							<ul class="small">
+								<li> PubMed: AND / OR, MESH</li>
+								<li> ClinicalTrials: campos adicionales</li>
+								<li> MedLinePlus: campos adicionales</li>
+							</ul>
+						</li>
+						<li>Mejoras cTakes</li>
+						<li>Acceso publico a simulador de historias clínicas</li>
+						<li>Otros campos adicionales a oncología</li>
+						<li>Integración vídeos en resultados</li>
+					</ul>
+				</section>
+
+				<section>
+					<img class="small" src="assets/icon-question.png" alt="questions icon"/>
+					<h2>¿Preguntas?</h2>
+				</section>
+
+				<section>
+					<img src="assets/UNED-logo.png" alt="UNED logo"/>
+					<div><em>¡Muchas gracias!</em></div>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
