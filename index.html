@@ -36,13 +36,16 @@
 			img.medium {
 				max-width: 360px;
 			}
+			img.big {
+				max-height:600px;
+			}
 			img.circle {
 				border-radius: 50%;
 			}
 			.reveal section img {
 				border:none;
 				box-shadow: none;
-				max-height:600px;
+				/**/
 			}
 			.reveal section img.profile {
 				border: 10px solid #eee;
@@ -85,6 +88,12 @@
 
 			.reveal .linehigher {
 				line-height: 2em;
+			}
+
+			.scrollable {
+		    bottom: 0px;
+		    overflow-y: auto  !important;
+		    overflow-x: hidden !important;
 			}
 
 		</style>
@@ -137,9 +146,9 @@
 					<h2>Sobre el proyecto</h2>
 					<p class="xsmall">Basado en los estudios previos:</p>
 					<ul class="xsmall">
-						<li><strong>Juan Pedro Pereira Carrillo</strong> - Sistema de reconocimiento de terminología clínica en textos clínicos no estructurados.<br/> <em>Trabajo Fin de Grado Tecnologías Información UNED 2017</em>
-    				<li><strong>Karla Azucena Chacón Vargas</strong> - Desarrollo de una metodología piloto para vinculación a ClinicalTrials como herramienta de medicina basada en evidencias, para proporcionar medicina centrada en el paciente.<br/> <em>Máster Telemedicina UOC 2017</em>
-    				<li><strong>Nicolás Passadore</strong> - Recomendaciones de artículos a través de PUBMED.<br/> <em>Máster Telemedicina UOC 2017</em></li>
+						<li><strong>Juan Pedro Pereira Carrillo</strong> - Sistema de reconocimiento de terminología clínica en textos clínicos no estructurados.<br/> <a href="https://www.uned.es" target="_blank"><em>Trabajo Fin de Grado Tecnologías Información UNED 2017</em></a>
+    				<li><strong>Karla Azucena Chacón Vargas</strong> - Desarrollo de una metodología piloto para vinculación a ClinicalTrials como herramienta de medicina basada en evidencias, para proporcionar medicina centrada en el paciente.<br/> <a href="http://openaccess.uoc.edu/webapps/o2/handle/10609/66645" target="_blank"><em>Máster Telemedicina UOC 2017</em></a>
+    				<li><strong>Nicolás Passadore</strong> - Recomendaciones de artículos a través de PUBMED.<br/> <a href="http://openaccess.uoc.edu/webapps/o2/handle/10609/66786" target="_blank"><em>Máster Telemedicina UOC 2017</em></a></li>
 					</ul>
 				</section>
 
@@ -180,10 +189,10 @@
 				<section>
 					<h3>Estado del Arte: Metodología</h3>
 					<ul class="small">
-						<li>Ágil</li>
+						<li>Ágil, SCRUM</li>
 						<li>Sprints semanales</li>
 						<li>Equipo trabajo multidisciplinar y distribuido globalmente</li>
-						<li>Evolución requisitos</li>
+						<li>Evolución requisitos, validación de hitos</li>
 					</ul>
 				</section>
 
@@ -295,7 +304,7 @@
 
 				<section>
 					<h3>Estado del Arte: Casos de Uso</h3>
-					<img src="assets/use-cases.png" alt="Casos de uso"/>
+					<img class="big" src="assets/use-cases.png" alt="Casos de uso"/>
 				</section>
 
 				<section>
@@ -314,12 +323,43 @@
 
 				<section>
 					<h3>Desarrollo de la solución: cTakes</h3>
+					<p class="xsmall">...fue diagnosticada de úlcera duodenal hace 4 años, fue tratada con omeprazol  desde hace unos meses presenta molestias abominales con nauseas sobre todo por las mañanas  en tto con omeprazol  no refiere que el dolor calme con la comida  no refiere mejoría a pesar del tto omeprazol 1 compr al día    exploración física normal    solicito gastroscopia..</p>
+					<pre><code><org.apache.ctakes.typesystem.type.refsem.UmlsConcept _id="1054" codingScheme="SNOMEDCT" code="367474008" score="0.0" disambiguated="false" cui="C0013295" tui="T047" preferredText="enfermedad ulcerosa del duodeno"/>
+<org.apache.ctakes.typesystem.type.refsem.UmlsConcept _id="1064" codingScheme="SNOMEDCT" code="51868009" score="0.0" disambiguated="false" cui="C0013295" tui="T047" preferredText="enfermedad ulcerosa del duodeno"/></code></pre>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: cTakes</h3>
+					<pre><code>curl -X POST -i http://127.0.0.1:8080/ctakes-nlp-service-es/rest/analyzeV2 --data '<message><lang>SPA</lang><text>biopsia</text></message>' -H "Content-Type: application/xml"</code></pre>
+					<pre><code><?xml version="1.0" encoding="UTF-8"?><CAS version="2">
+   <uima.cas.Sofa _indexed="0" _id="1" sofaNum="1" sofaID="_InitialView" mimeType="text" sofaString="biopsia"/>
+   <uima.tcas.DocumentAnnotation _indexed="1" _id="8" _ref_sofa="1" begin="0" end="7" language="x-unspecified"/>
+   <org.apache.ctakes.typesystem.type.textspan.Segment _indexed="1" _id="13" _ref_sofa="1" begin="0" end="7" id="SIMPLE_SEGMENT"/>
+   <org.apache.ctakes.typesystem.type.textspan.Sentence _indexed="1" _id="19" _ref_sofa="1" begin="0" end="7" sentenceNumber="0"/>
+   <org.apache.ctakes.typesystem.type.syntax.WordToken _indexed="1" _id="25" _ref_sofa="1" begin="0" end="7" tokenNumber="0" partOfSpeech="NOUN" capitalization="0" numPosition="0"/>
+   <org.apache.ctakes.typesystem.type.textsem.ProcedureMention _indexed="1" _id="83" _ref_sofa="1" begin="0" end="7" id="0" _ref_ontologyConceptArr="77" typeID="5" discoveryTechnique="1" confidence="0.0" polarity="0" uncertainty="0" conditional="false" generic="false" historyOf="0"/>
+   <org.apache.ctakes.typesystem.type.refsem.UmlsConcept _id="47" codingScheme="MDRSPA" code="10004720" score="0.0" disambiguated="false" cui="C0005558" tui="T060" preferredText="biopsia (acción)"/>
+   <org.apache.ctakes.typesystem.type.refsem.UmlsConcept _id="57" codingScheme="SCTSPA" code="129314006" score="0.0" disambiguated="false" cui="C0005558" tui="T060" preferredText="biopsia (acción)"/>
+   <org.apache.ctakes.typesystem.type.refsem.UmlsConcept _id="37" codingScheme="MDRSPA" code="10004805" score="0.0" disambiguated="false" cui="C0005558" tui="T060" preferredText="biopsia (acción)"/>
+   <org.apache.ctakes.typesystem.type.refsem.UmlsConcept _id="67" codingScheme="SCTSPA" code="86273004" score="0.0" disambiguated="false" cui="C0005558" tui="T060" preferredText="biopsia (acción)"/>
+   <uima.cas.FSArray _id="77" size="4">
+       <i>67</i>
+       <i>37</i>
+       <i>57</i>
+       <i>47</i>
+   </uima.cas.FSArray>
+</CAS></code></pre>
 				</section>
 
 				<section>
 					<h3>Desarrollo de la solución: Bioontology</h3>
 					<p class="xsmall">Obtener términos MESH en base a los términos CUI que es capaz de identificar cTakes.</p>
-					<pre><code>{
+					<pre><code>$client = BioontologyClient::factory(['apikey' => 'KEY']);
+$response = $client->query([
+ 'q' => 'C0025202',
+]);
+----------------------------------------------------------
+{
  "page": 1,
  "pageCount": 1,
  "totalCount": 1,
@@ -350,13 +390,18 @@
  ],
  ...
 }</code></pre>
-					<p class="xsmall">https://packagist.org/packages/tutor/bioontology</p>
+					<p class="xsmall"><a href="https://packagist.org/packages/tutor/bioontology">https://packagist.org/packages/tutor/bioontology</a></p>
 				</section>
 
 				<section>
 					<h3>Desarrollo de la solución: PubMed</h3>
 					<p class="xsmall">Obtener artículos relacionados a través de la combinación de términos MESH (Bioontology)</p>
-					<pre><code>"articles": [
+					<pre><code>$response = $client->eFetch([
+  'db' => 'pubmed',
+  'id' => '29370496,50978626,28558982,9507199,6678417',
+]);
+--------------------------------------
+"articles": [
  {
    "id": "29370496",
    "title": "[BOWEL ENDOMETRIOSIS - CASE OF RECTAL LOCALISATION.]",
@@ -400,14 +445,19 @@
    { … }
  ]
 },</code></pre>
-					<p class="xsmall">https://packagist.org/packages/tutor/ncbi</p>
+					<p class="xsmall"><a href="https://packagist.org/packages/tutor/ncbi">https://packagist.org/packages/tutor/ncbi</a></p>
 
 				</section>
 
 				<section>
 					<h3>Desarrollo de la solución: ClinicalTrials</h3>
 					<p class="xsmall">Integración con el repositorio de casos clínicos relacionados a través de la combinación de términos MESH (Bioontology).</p>
-					<pre><code>"clinicaltrials": {
+					<pre><code>$client = ClinicalTrialsClient::factory();
+$response = $client->query([
+  'brief_title_fulltext' => 'Breast',
+]);
+-------------------------------------
+"clinicaltrials": {
  "query": {
    "brief_title_fulltext": "Breast"
  },
@@ -428,14 +478,19 @@
 },
 {...}]
 }</code></pre>
-					<p class="xsmall">https://packagist.org/packages/tutor/clinicaltrials</p>
+					<p class="xsmall"><a href="https://packagist.org/packages/tutor/clinicaltrials">https://packagist.org/packages/tutor/clinicaltrials</a></p>
 
 				</section>
 
 				<section>
 					<h3>Desarrollo de la solución: MedlinePlus</h3>
 					<p class="xsmall">Obtener términos MESH en base a los términos CUI que es capaz de identificar cTakes.</p>
-					<pre><code>"medlineplus": {
+					<pre><code>$client = MedlinePlusClient::factory();
+$response = $client->query([
+  'term' => '"Breast" OR "diabetes drugs"',
+]);
+------------------------
+"medlineplus": {
  "query": {
    "term": "Breast",
    "rettype": "all"
@@ -451,14 +506,62 @@
    "title": "Breast Cancer",
    "FullSummary": "Breast cancer affects one in eight women during their lives. No one knows why some women get breast cancer, but there are many risk factors. Risks that you cannot change includeAge - the risk rises as you get olderGenes - two genes, BRCA1 and BRCA2, greatly increase the risk. Women who have family members with breast or ovarian cancer may wish to be tested for the genes.Personal factors - beginning periods before age 12 or going through menopause after age 55Other risks include obesity, using hormone replacement therapy (also called menopausal hormone therapy), taking birth control pills, drinking alcohol, not having children or having your first child after age 35, and having dense breasts.Symptoms of breast cancer may include a lump in the breast, a change in size or shape of the breast, and discharge from a nipple. Breast self-exams and mammography can help find breast cancer early, when it is most treatable. One possible treatment is surgery. It could be a lumpectomy or a mastectomy. Other treatments include radiation therapy, chemotherapy, hormone therapy, and targeted therapy. Targeted therapy uses substances that attack cancer cells without harming normal cells.Men can have breast cancer, too, but it is rare.NIH: National Cancer Institute"
 },</code></pre>
-					<p class="xsmall">https://packagist.org/packages/tutor/bioontology</p>
+					<p class="xsmall"><a href="https://packagist.org/packages/tutor/medlineplus">https://packagist.org/packages/tutor/medlineplus</a></p>
 
 				</section>
 
 				<section>
 					<h3>Desarrollo de la solución: Youtube</h3>
 					<p class="xsmall">Obtención de vídeos de canales de Youtube previamente seleccionados con el algoritmo Tesis de Luis Fernández Luque de HelthTrust.</p>
+					<pre><code>/**
+ * Provides a 'MigrateYoutubeChannelList' migrate source.
+ *
+ * @MigrateSource(
+ *  id = "youtube_channel_list"
+ * )
+ */
+class MigrateYoutubeChannelList extends Url {
 
+  /**
+   * The source Channel IDs to retrieve.
+   *
+   * @var array
+   */
+  protected $channelIDs = [];
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration) {
+    if (!is_array($configuration['channels'])) {
+      $configuration['channels'] = [$configuration['channels']];
+    }
+
+    $this->channelIDs = $configuration['channels'];
+
+    // Conver to URLs:
+    // https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UCG0K7g5YG3_6HGxN7ioF0lg&maxResults=30&key=AIzaSyCgQOnxl2sMkTlVzPZMY6HgechBVe8ihqs
+    // @TODO get Key from config form!
+    $key = !empty($configuration['key']) ? $configuration['key'] : NULL;
+    $order = !empty($configuration['order']) ? $configuration['order'] : 'date';
+    $results = !empty($configuration['maxResults']) ? $configuration['maxResults'] : 50;
+
+    $configuration['urls'] = [];
+    foreach ($this->channelIDs as $value) {
+      $configuration['urls'][] = "https://www.googleapis.com/youtube/v3/search?order=$order&part=snippet&channelId=$value&maxResults=$results&key=$key";
+    }
+
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $migration);
+
+  }
+
+}</code></pre>
+					<p class="xsmall">Migrate youtube (pendiente contribuir)</p>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Youtube</h3>
+					<img src="assets/hope-videos.png" alt="youtube integración"/>
 				</section>
 
 				<section>
@@ -477,10 +580,31 @@
 
 				<section>
 					<h3>Desarrollo de la solución: Simulador</h3>
+					<div class="xsmall">Principal</div>
+					<img src="assets/helper-main.png" alt="Helper main"/>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Simulador</h3>
+					<div class="xsmall">PubMed</div>
+					<img src="assets/helper-pubmed.png" alt="Helper main"/>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Simulador</h3>
+					<div class="xsmall">MedLinePlus</div>
+					<img src="assets/helper-medlineplus.png" alt="Helper main"/>
+				</section>
+
+				<section>
+					<h3>Desarrollo de la solución: Simulador</h3>
+					<div class="xsmall">ClinicalTrials</div>
+					<img src="assets/helper-clinicaltrials.png" alt="Helper main"/>
 				</section>
 
 				<section>
 					<h3>Desarrollo de la solución: Avicenna</h3>
+					<img src="assets/avicenna.gif" alt="avicenna"/>
 				</section>
 
 				<section>
@@ -489,12 +613,18 @@
 
 				<section>
 					<h3>Pilotaje: demo</h3>
-					<p class="small">Clínica Conciencia en Neuquén, Argentina. Septiembre 2018</p>
-					<video width="320" height="240" controls>
+					<div class="small">Clínica Conciencia en Neuquén, Argentina. Septiembre 2018</div>
+					<video width="640" height="480" controls>
 					  <source src="assets/conciencia-integration-demo.mp4" type="video/mp4">
 					  Tu navegador no es compatible con MP4
 					</video>
 				</section>
+
+				<section>
+					<h3>Pilotaje: estudio</h3>
+					<p class="xsmall">Estudio y evaluación del sistema recomendador de articulos médicos, basado en la captura y síntesis de la historia clínica electrónica a través del uso de lenguaje natural y ontologías sanitarias perteneciente al proyecto HOPE. Achkar Tuglaman, Nesib Nicolas<br/> <a href="http://openaccess.uoc.edu/webapps/o2/handle/10609/83772" target="_blank"><em>Máster Telemedicina UOC 2017</em></a></p>
+				</section>
+
 
 				<section>
 					<h2>Conclusiones</h2>
